@@ -1,0 +1,18 @@
+fieldset {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 5px;
+    margin-bottom: 1em;
+}
+
+fieldset label {
+    text-align: right;
+}
+
+fieldset label:after {
+    content: ":";
+}
+
+#qrcode {
+    margin: 0 auto;
+}
