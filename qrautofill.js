@@ -47,7 +47,7 @@ function parseGenString(genString) {
                     return "address2";
                 case 'P':
                     return "postcode";
-                case 'E':
+                case '@':
                     return "email";
                 case 'M':
                     return "mobile";
@@ -62,7 +62,7 @@ function parseGenString(genString) {
         switch (c) {
             case 'T':
                 return '\t';
-            case 'E':
+            case 'R':
                 return '\n';
             case 'W':
                 return ' ';
