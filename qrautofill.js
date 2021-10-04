@@ -57,20 +57,31 @@ var qroptions = {
 function initForm() {
     qrcode = new QRCode(document.getElementById("qrcode"), qrcodejsOptions);
 
-
     QRCodeStyling = new QRCodeStyling(qroptions);
 
     QRCodeStyling.append(document.getElementById("qrcodestyling"));
     // QRCodeStyling.download({ name: "qr", extension: "svg" });
 
 
+    // Get / Set QR Generator parameters
     // get parameters from URL
     let urlParams = new URLSearchParams(document.location.search.substring(1));
 
-    // set genstring variable. Default matches m3-test mobile unit form. 
+    // Set Output format. Default is JSON. 
+    outputFormat = urlParams.has('outputformat') ?
+        urlParams.get('outputformat') : "JSON"; // JSON, String
+
+    // Encoding. Default is Base64
+    encoding = urlParams.has('encoding') ?
+        urlParams.get('encoding') : "Base64"; // Base64, Raw
+
+    // Charset change. Default is none
+    charsetChange = urlParams.has('charsetchange') ?
+        urlParams.get('charsetchange') : "None"; // None, CP850_to_ISO8859_1, ISO8859_1_TO_CP850
+
+    // Set genstring variable. Default matches m3-test mobile unit form. Only for String Output
     genString = urlParams.has('genstring') ?
-        urlParams.get('genstring') :
-        "@TLTFTBRTTTMTT1T2TPTCTTWWW";
+        urlParams.get('genstring') : "@TLTFTBRTTTMTT1T2TPTCTTWWW";
 
     document.getElementsByName("genstring")[0].value = genString;
 
@@ -144,7 +155,7 @@ function updateQR() {
     console.log(`Updating QR Code (${genString})`)
 
     let qrcontent = parseGenString(genString);
-    
+
     qrcode.makeCode(qrcontent);
     qroptions.data = qrcontent;
     QRCodeStyling.update(qroptions);
