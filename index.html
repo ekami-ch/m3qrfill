@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="qrcodejs/qrcode.min.js"></script>
     <script type="text/javascript" src="qrautofill.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
 </head>
 
@@ -37,33 +38,35 @@
             </select>
 
             <label for="firstname">Prénom</label>
-            <input name="firstname" type="text" placeholder="Jean" maxlength="15" />
+            <input name="firstname" type="text" value="Jean" maxlength="15" />
             <label for="lastname">Nom</label>
-            <input name="lastname" type="text" placeholder="Favre" maxlength="15" />
+            <input name="lastname" type="text" value="Favre" maxlength="15" />
 
             <label for="birthdate">Date de naissance</label>
             <input name="birthdate" type="date" value="1990-01-01" />
 
             <label for="email">Email</label>
-            <input name="email" type="text" placeholder="jean.favre@email.tld" maxlength="25"/>
+            <input name="email" type="text" value="jean.favre@email.tld" maxlength="25"/>
 
             <label for="mobile">Téléphone Mobile</label>
-            <input name="mobile" type="text" placeholder="0791234567" maxlength="15"/>
+            <input name="mobile" type="text" value="0791234567" maxlength="15"/>
 
             <label for="address1">Rue, numéro</label>
-            <input name="address1" type="text" placeholder="Place de Cornavin, 3" maxlength="50" />
+            <input name="address1" type="text" value="Place de Cornavin, 3" maxlength="50" />
             <label for="address2">Complément d'adresse</label>
-            <input name="address2" type="text" placeholder="" maxlength="50" />
+            <input name="address2" type="text" value="" maxlength="50" />
             <label for="postcode">NPA / Code postal</label>
-            <input name="postcode" type="text" placeholder="1201" maxlength="7" />
+            <input name="postcode" type="text" value="1201" maxlength="7" />
             <label for="city">Ville</label>
-            <input name="city" type="text" placeholder="Genève" maxlength="15" />
+            <input name="city" type="text" value="Genève" maxlength="15" />
 
             <!-- <input checked="checked" name="sex" type="radio" value="male" /> Male <br /> 
                 <input name="sex" type="radio" value="female" /> Female <br />  
                 <input name="democheckbox" type="checkbox" value="1" /> Checkbox<br /> 
                 <button type="submit" value="Submit">Submit</button> -->
         </fieldset>
+
+        <div id="qrcodestyling"></div>
 
         <div id="qrcode"></div>
         <script type="text/javascript">
