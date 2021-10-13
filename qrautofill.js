@@ -76,6 +76,8 @@ function parseGenString(genString) {
                 return '\r';
             case 'W':
                 return ' ';
+            case 'N':
+                return '\n';
             default:
                 return document.getElementsByName(getElementFromGenCharacter(c))[0].value
         };
@@ -145,14 +147,14 @@ function changeCharset(input, charsetFromTo) {
 
 // This function will generate the string that will be saved in the QR Code.
 // It is agnostic of the selected QR Code Generator library.
-function generateQRContent(formData, genString, charsetChange, outputFormat, encoding) {
+function generateQRContent( genString, charsetChange, outputFormat, encoding) {
     let qrContent = new String;
 
     // 1. Generate content in raw format
     qrContent = parseGenString(genString);
 
     // 2. Charset change
-    qrContent = changeCharset(qrContent, charsetChange);
+    //qrContent = changeCharset(qrContent, charsetChange);
 
     // 3. Encoding
     qrContent = changeEncoding(qrContent, encoding)
@@ -160,6 +162,15 @@ function generateQRContent(formData, genString, charsetChange, outputFormat, enc
     // Return
     return qrContent;
 }
+
+// Test
+
+function changeEncoding(qrContent, encoding)
+{
+    let encodedString = btoa(qrContent)
+    return encodedString
+}
+
 
 // Initialise QR Code in HTML document
 function initQRCode() {
@@ -211,7 +222,7 @@ function updateQR() {
 
     updateGlobalVariables();
 
-    generateQRContent(formData, genString, charsetChange, outputFormat, encoding);
+    generateQRContent( genString, charsetChange, outputFormat, encoding);
 
     let qrcontent = parseGenString(genString);
 
