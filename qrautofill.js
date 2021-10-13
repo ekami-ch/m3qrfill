@@ -36,7 +36,7 @@ function updateGlobalVariables() {
 }
 
 // Return the text to be encoded in the QR Code based on the genString sequence provided in argument
-function parseGenString(genString) {
+function generateStringOuput(genString) {
 
     // Return the value corresponding to a specific Character in the genString
     function parseGenCharacter(c) {
@@ -144,30 +144,82 @@ function changeCharset(input, charsetFromTo) {
 
 }
 
+function generateJsonOutput() {
+    let outputObject = {};
+
+    // Go through each form
+    Array.from(document.forms).forEach((form, formIndex) => {
+
+        outputObject[form.name] = {};
+
+        function appendFormElement(element, elementIndex) {
+            if (element.type == 'fieldset')
+                return;
+
+            outputObject[form.name][element.name] = element.value;
+
+            console.log(form.name, element.name, element);
+        }
+
+        // Go through each element of the form
+        Array.from(form.elements).forEach(appendFormElement);
+    });
+
+    console.log(outputObject);
+
+    let jsonOutput = JSON.stringify(outputObject)
+
+    console.log(jsonOutput);
+
+    return jsonOutput;
+}
 
 // This function will generate the string that will be saved in the QR Code.
 // It is agnostic of the selected QR Code Generator library.
-function generateQRContent( genString, charsetChange, outputFormat, encoding) {
+function generateQRContent(genString, charsetFromTo, outputFormat, encoding) {
     let qrContent = new String;
 
     // 1. Generate content in raw format
-    qrContent = parseGenString(genString);
+    switch (outputFormat) {
+        case "String":
+            qrContent = generateStringOuput(genString);
+            break;
+
+        case "JSON":
+        case "":
+            qrContent = generateJsonOutput();
+            break;
+
+        default:
+            throw `Unknown Output Format (${outputFormat})`
+    }
 
     // 2. Charset change
-    //qrContent = changeCharset(qrContent, charsetChange);
+    if ((charsetChange != "None") && (charsetChange != ""))
+        qrContent = changeCharset(qrContent, charsetFromTo);
 
     // 3. Encoding
-    qrContent = changeEncoding(qrContent, encoding)
+    if (encoding != "Raw")
+        qrContent = changeEncoding(qrContent, encoding)
 
     // Return
+    console.log(`Generated qrContent`, qrContent)
     return qrContent;
 }
 
 // Test
 
-function changeEncoding(qrContent, encoding)
-{
-    let encodedString = btoa(qrContent)
+function changeEncoding(qrContent, encoding) {
+    let encodedString;
+
+    switch (encoding) {
+        case "Base64":
+            encodedString = btoa(qrContent);
+            break;
+        default:
+            throw `Unknown Encoding (${encoding})`;
+    }
+
     return encodedString
 }
 
@@ -184,34 +236,8 @@ function initQRCode() {
         correctLevel: QRCode.CorrectLevel.H
     };
 
-    // QR Code Styling Library
-    const qroptions = {
-        width: 300,
-        height: 300,
-        type: "svg",
-        data: "https://www.m-3.com/",
-        mode: "Byte", //string ('Numeric' 'Alphanumeric' 'Byte' 'Kanji')
-        //image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
-        dotsOptions: {
-            color: "#000000",
-            type: "square" //'rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded'
-        },
-        backgroundOptions: {
-            color: "#ffffff",
-        },
-        imageOptions: {
-            crossOrigin: "anonymous",
-            margin: 10
-        }
-    };
-
     // QRCodejs
     qrcode = new QRCode(document.getElementById("qrcode"), qrcodejsOptions);
-
-    // QR Code Styling
-    QRCodeStyling = new QRCodeStyling(qroptions);
-    QRCodeStyling.append(document.getElementById("qrcodestyling"));
-    // QRCodeStyling.download({ name: "qr", extension: "svg" });
 
 }
 
@@ -222,13 +248,10 @@ function updateQR() {
 
     updateGlobalVariables();
 
-    generateQRContent( genString, charsetChange, outputFormat, encoding);
-
-    let qrcontent = parseGenString(genString);
+    let qrcontent = generateQRContent(genString, charsetChange, outputFormat, encoding);
 
     qrcode.makeCode(qrcontent);
-    qroptions.data = qrcontent;
-    QRCodeStyling.update(qroptions);
+
     document.getElementById("output").innerText = qrcontent;
 
 }
