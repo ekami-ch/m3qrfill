@@ -15,18 +15,19 @@
 
     <script type="text/javascript" src="qrautofill.js"></script>
 
-    <script type="text/javascript" src="qrcodejs/qrcode.min.js"></script>
-    <script type="text/javascript" src="https://rawcdn.githack.com/cozmo/jsQR/8e6a036beafa7053dd44b1b76ac578d22b1b3311/dist/jsQR.js"></script>
+    <!-- Using QRious QR Generator https://github.com/neocotic/qrious -->
+    <script type="text/javascript" src="https://rawcdn.githack.com/neocotic/qrious/881c9a7ad12a6155e15722a62706f1148afed18c/dist/qrious.min.js"></script>
+
 </head>
 
 <body>
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+    <input name="genstring" type="text" />
 
     <form accept-charset="UTF-8" autocomplete="on" oninput="updateQR()" name="qrForm">
         <label for="genstring">Générateur</label>
-        <input name="genstring" type="text" />
 
         <fieldset>
             <legend>Pré-admission accélérée</legend>
@@ -60,18 +61,11 @@
             <label for="city">Ville</label>
             <input name="city" type="text" value="Genève" maxlength="15" />
 
-            <!-- <input checked="checked" name="sex" type="radio" value="male" /> Male <br /> 
-                <input name="sex" type="radio" value="female" /> Female <br />  
-                <input name="democheckbox" type="checkbox" value="1" /> Checkbox<br /> 
-                <button type="submit" value="Submit">Submit</button> -->
         </fieldset>
 
-        <div id="qrcodestyling"></div>
-
-        <div id="qrcode"></div>
-        <script type="text/javascript">
-        </script>
+        <br/>
         <div id="output"></div>
+        <canvas id="qrious"></canvas>
 
     </form>
 

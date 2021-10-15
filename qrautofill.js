@@ -1,5 +1,6 @@
 // Global variables
 var outputFormat, encoding, charsetChange, genString;
+var qrious;
 
 // initForm
 // Set genString and update input field
@@ -226,18 +227,18 @@ function changeEncoding(qrContent, encoding) {
 
 // Initialise QR Code in HTML document
 function initQRCode() {
-    // qrcodejs Library
-    const qrcodejsOptions = {
-        text: "",
-        // width: 128,
-        // height: 128,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-    };
-
-    // QRCodejs
-    qrcode = new QRCode(document.getElementById("qrcode"), qrcodejsOptions);
+    // Using QRious https://github.com/neocotic/qrious
+    qrious = new QRious({
+        element: document.getElementById('qrious'),
+        background: 'white',
+        backgroundAlpha: 1,
+        foreground: 'black',
+        foregroundAlpha: 1,
+        level: 'H',
+        padding: 25,
+        size: 500,
+        value: 'https://github.com/neocotic/qrious'
+    });
 
 }
 
@@ -250,8 +251,6 @@ function updateQR() {
 
     let qrcontent = generateQRContent(genString, charsetChange, outputFormat, encoding);
 
-    qrcode.makeCode(qrcontent);
-
     document.getElementById("output").innerText = qrcontent;
-
+    qrious.value = qrcontent;
 }
