@@ -146,18 +146,18 @@ function changeCharset(input, charsetFromTo) {
 }
 
 function generateJsonOutput() {
-    let outputObject = {};
+    let payload = {};
 
     // Go through each form
     Array.from(document.forms).forEach((form, formIndex) => {
 
-        outputObject[form.name] = {};
+        payload[form.name] = {};
 
         function appendFormElement(element, elementIndex) {
             if (element.type == 'fieldset')
                 return;
 
-            outputObject[form.name][element.name] = element.value;
+            payload[form.name][element.name] = element.value;
 
             console.log(form.name, element.name, element);
         }
@@ -165,6 +165,15 @@ function generateJsonOutput() {
         // Go through each element of the form
         Array.from(form.elements).forEach(appendFormElement);
     });
+
+
+    // Put payload in main object containing headers
+    let outputObject = {
+        v: "1.0",
+        type: "data"
+    };
+
+    outputObject['payload'] = payload;
 
     console.log(outputObject);
 
