@@ -1,6 +1,6 @@
 // Global variables
 var outputFormat, encoding, charsetChange, genString;
-var qrious;
+var easyQRCode;
 
 // initForm
 // Set genString and update input field
@@ -236,19 +236,138 @@ function changeEncoding(qrContent, encoding) {
 
 // Initialise QR Code in HTML document
 function initQRCode() {
-    // Using QRious https://github.com/neocotic/qrious
-    qrious = new QRious({
-        element: document.getElementById('qrious'),
-        background: 'white',
-        backgroundAlpha: 1,
-        foreground: 'black',
-        foregroundAlpha: 1,
-        level: 'H',
-        padding: 25,
-        size: 500,
-        value: 'https://github.com/neocotic/qrious'
-    });
 
+    let easyQRCodeOptions = {
+        // ====== Basic
+        text: "https://github.com/ushelp/EasyQRCodeJS",
+        width: 512,
+        height: 512,
+        colorDark: "#000000",
+        colorLight: "#fffcf0",
+        correctLevel: QRCode.CorrectLevel.M, // L, M, Q, H
+        dotScale: 0.6, // For body block, must be greater than 0, less than or equal to 1. default is 1
+        quietZone: 10,
+        quietZoneColor: "rgba(0,0,0,0)",
+        backgroundImage: 'assets/m3-logo-transparent-square.png', // Background Image
+        backgroundImageAlpha: 0.2, // Background image transparency, value between 0 and 1. default is 1. 
+        autoColor: true, // Automatic color adjustment(for data block)
+        autoColorDark: "rgba(0, 0, 0, .6)", // Automatic color: dark CSS color
+        autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
+        // title: '', // content 
+        // titleFont: "normal normal bold 20px Arial", //font. default is "bold 16px Arial"
+        // titleColor: "#004284", // color. default is "#000"
+        // titleBackgroundColor: "#fff", // background color. default is "#fff"
+        // titleHeight: 40, // height, including subTitle. default is 0
+        // titleTop: 20, // draws y coordinates. default is 30
+
+        // ====== dotScale
+        /*
+
+        dotScaleTiming: 1, // Dafault for timing block , must be greater than 0, less than or equal to 1. default is 1
+        dotScaleTiming_H: undefined, // For horizontal timing block, must be greater than 0, less than or equal to 1. default is 1
+        dotScaleTiming_V: undefined, // For vertical timing block, must be greater than 0, less than or equal to 1. default is 1
+
+        dotScaleA: 1, // Dafault for alignment block, must be greater than 0, less than or equal to 1. default is 1
+        dotScaleAO: undefined, // For alignment outer block, must be greater than 0, less than or equal to 1. default is 1
+        dotScaleAI: undefined, // For alignment inner block, must be greater than 0, less than or equal to 1. default is 1
+        */
+
+        // ====== Logo
+        /*
+        logo: "assets/m3-logo-transparent-min.png", // Relative address, relative to `easy.qrcode.min.js`
+        logoWidth: 80, // fixed logo width. default is `width/3.5`
+        logoHeight: 80, // fixed logo height. default is `heigth/3.5`
+        logoMaxWidth: undefined, // Maximum logo width. if set will ignore `logoWidth` value
+        logoMaxHeight: undefined, // Maximum logo height. if set will ignore `logoHeight` value
+        logoBackgroundColor: '#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
+        logoBackgroundTransparent: false, // Whether use transparent image, default is false
+        */
+
+        // ====== Backgroud Image
+        /*
+        backgroundImage: '', // Background Image
+        backgroundImageAlpha: 1, // Background image transparency, value between 0 and 1. default is 1. 
+        autoColor: false, // Automatic color adjustment(for data block)
+        autoColorDark: "rgba(0, 0, 0, .6)", // Automatic color: dark CSS color
+        autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
+        */
+
+        // ====== Colorful
+        // === Posotion Pattern(Eye) Color
+        /*
+        PO: '#e1622f', // Global Posotion Outer color. if not set, the defaut is `colorDark`
+        PI: '#aa5b71', // Global Posotion Inner color. if not set, the defaut is `colorDark`
+        PO_TL:'', // Posotion Outer color - Top Left 
+        PI_TL:'', // Posotion Inner color - Top Left 
+        PO_TR:'', // Posotion Outer color - Top Right 
+        PI_TR:'', // Posotion Inner color - Top Right 
+        PO_BL:'', // Posotion Outer color - Bottom Left 
+        PI_BL:'', // Posotion Inner color - Bottom Left 
+        */
+        // === Alignment Color
+        /*
+        AO: '', // Alignment Outer. if not set, the defaut is `colorDark`
+        AI: '', // Alignment Inner. if not set, the defaut is `colorDark`
+        */
+        // === Timing Pattern Color
+        /*
+        timing: '#e1622f', // Global Timing color. if not set, the defaut is `colorDark`
+        timing_H: '', // Horizontal timing color
+        timing_V: '', // Vertical timing color
+        */
+
+        // ====== Title
+        /*
+        title: 'QR Title', // content 
+        titleFont: "normal normal bold 18px Arial", //font. default is "bold 16px Arial"
+        titleColor: "#004284", // color. default is "#000"
+        titleBackgroundColor: "#fff", // background color. default is "#fff"
+        titleHeight: 70, // height, including subTitle. default is 0
+        titleTop: 25, // draws y coordinates. default is 30
+        */
+
+        // ====== SubTitle
+        /*
+        subTitle: 'QR subTitle', // content
+        subTitleFont: "normal normal normal 14px Arial", // font. default is "14px Arial"
+        subTitleColor: "#004284", // color. default is "4F4F4F"
+        subTitleTop: 40, // draws y coordinates. default is 0
+        */
+
+        // ===== Event Handler
+        /*
+        onRenderingStart: undefined,
+        onRenderingEnd: undefined,
+        */
+
+        // ===== Versions
+        /*
+        version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
+        */
+
+        // ===== Binary(hex) data mode
+        /*
+        binary: false, // Whether it is binary mode, default is text mode. 
+        */
+
+        // ===== Tooltip
+        /*
+        tooltip: false, // Whether set the QRCode Text as the title attribute value of the QRCode div
+        */
+
+        // ==== CORS
+        /*
+        crossOrigin: null, // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
+        */
+
+        // =====  Drawing method
+        /*
+        drawer: 'canvas' // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
+        */
+
+    };
+
+    easyQRCode = new QRCode(document.getElementById("easyqrcode"), easyQRCodeOptions);
 }
 
 // This function will render / update the QR Code on the HTML Document
@@ -260,6 +379,6 @@ function updateQR() {
 
     let qrcontent = generateQRContent(genString, charsetChange, outputFormat, encoding);
 
+    easyQRCode.makeCode(qrcontent);
     document.getElementById("output").innerText = qrcontent;
-    qrious.value = qrcontent;
 }
