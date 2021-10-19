@@ -1,0 +1,18 @@
+form {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 5px;
+    margin-bottom: 1em;
+}
+
+form label {
+    text-align: right;
+}
+
+form label:after {
+    content: ":";
+}
+
+#qrcode {
+    margin: 0 auto;
+}

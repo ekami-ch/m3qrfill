@@ -1,6 +1,6 @@
 // Global variables
 var outputFormat, encoding, charsetChange, genString;
-var easyQRCode;
+var qrCode, qrValueOutput;
 
 // initForm
 // Set genString and update input field
@@ -24,16 +24,16 @@ function initForm() {
     genString = urlParams.has('genstring') ?
         urlParams.get('genstring') : "@TLTFTBRTTTMTT1T2TPTCTTWWW";
 
-    document.getElementsByName("genstring")[0].value = genString;
-
-    initQRCode();
+    // document.getElementsByName("genstring")[0].value = genString;
 }
 
 // Update global variables with form content
 function updateGlobalVariables() {
-    // Update relevant global variables
-    genString = document.getElementsByName("genstring")[0].value;
-    console.log(genString);
+    try {
+        // Update relevant global variables
+        genString = document.getElementsByName("genstring")[0].value;
+        console.log(genString);
+    } catch {}
 }
 
 // Return the text to be encoded in the QR Code based on the genString sequence provided in argument
@@ -235,7 +235,7 @@ function changeEncoding(qrContent, encoding) {
 
 
 // Initialise QR Code in HTML document
-function initQRCode() {
+function initQRCode(qrCodeId = "qrcode", qrValueOutputId = null) {
 
     let easyQRCodeOptions = {
         // ====== Basic
@@ -249,9 +249,9 @@ function initQRCode() {
         quietZone: 10,
         quietZoneColor: "rgba(0,0,0,0)",
         backgroundImage: 'assets/m3-logo-transparent-square.png', // Background Image
-        backgroundImageAlpha: 0.2, // Background image transparency, value between 0 and 1. default is 1. 
+        backgroundImageAlpha: 0.15, // Background image transparency, value between 0 and 1. default is 1. 
         autoColor: true, // Automatic color adjustment(for data block)
-        autoColorDark: "rgba(0, 0, 0, .6)", // Automatic color: dark CSS color
+        autoColorDark: "rgba(0, 0, 0, .8)", // Automatic color: dark CSS color
         autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
         // title: '', // content 
         // titleFont: "normal normal bold 20px Arial", //font. default is "bold 16px Arial"
@@ -367,7 +367,8 @@ function initQRCode() {
 
     };
 
-    easyQRCode = new QRCode(document.getElementById("easyqrcode"), easyQRCodeOptions);
+    qrCode = new QRCode(document.getElementById(qrCodeId), easyQRCodeOptions);
+    if (qrValueOutputId) qrValueOutput = document.getElementById(qrValueOutputId);
 }
 
 // This function will render / update the QR Code on the HTML Document
@@ -379,6 +380,6 @@ function updateQR() {
 
     let qrcontent = generateQRContent(genString, charsetChange, outputFormat, encoding);
 
-    easyQRCode.makeCode(qrcontent);
-    document.getElementById("output").innerText = qrcontent;
+    qrCode.makeCode(qrcontent);
+    if (qrValueOutput) qrValueOutput.innerText = qrcontent;
 }
