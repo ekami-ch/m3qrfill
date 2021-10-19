@@ -2,13 +2,13 @@ const standardFields = {
     'L': {
         name: "lastname",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Nom"
     },
     'F': {
         name: "firstname",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Prénom"
     },
     'S': {
@@ -28,37 +28,37 @@ const standardFields = {
     '1': {
         name: "address1",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Adresse (ligne 1)"
     },
     '2': {
         name: "address2",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Adresse (ligne 2)"
     },
     'P': {
         name: "postcode",
         type: "text",
-        maxlengh: 10,
+        maxlength: 10,
         label: "Code postal"
     },
     '@': {
         name: "email",
         type: "email",
-        maxlengh: 30,
+        maxlength: 30,
         label: "Email"
     },
     'M': {
         name: "mobile",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Numéro de mobile"
     },
     'C': {
         name: "city",
         type: "text",
-        maxlengh: 15,
+        maxlength: 15,
         label: "Ville"
     },
 }
