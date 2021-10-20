@@ -1,69 +1,7 @@
-const standardFields = {
-    'L': {
-        name: "lastname",
-        type: "text",
-        maxlength: 15,
-        label: "Nom"
-    },
-    'F': {
-        name: "firstname",
-        type: "text",
-        maxlength: 15,
-        label: "Prénom"
-    },
-    'S': {
-        name: "sex",
-        type: "select",
-        label: "Genre",
-        options: {
-            male: 'Homme',
-            female: 'Femme'
-        }
-    },
-    'B': {
-        name: "birthdate",
-        type: "date",
-        label: "Date de naissance"
-    },
-    '1': {
-        name: "address1",
-        type: "text",
-        maxlength: 15,
-        label: "Adresse (ligne 1)"
-    },
-    '2': {
-        name: "address2",
-        type: "text",
-        maxlength: 15,
-        label: "Adresse (ligne 2)"
-    },
-    'P': {
-        name: "postcode",
-        type: "text",
-        maxlength: 10,
-        label: "Code postal"
-    },
-    '@': {
-        name: "email",
-        type: "email",
-        maxlength: 30,
-        label: "Email"
-    },
-    'M': {
-        name: "mobile",
-        type: "text",
-        maxlength: 15,
-        label: "Numéro de mobile"
-    },
-    'C': {
-        name: "city",
-        type: "text",
-        maxlength: 15,
-        label: "Ville"
-    },
-}
+import { defaultFormFields, standardFields } from './commons.js';
 
-const defaultFormFields = 'LFSB12P@MC';
+export { generateForm };
+
 
 function generateForm(formID, formFields = defaultFormFields) {
     // Get / Set QR Generator parameters
@@ -77,7 +15,7 @@ function generateForm(formID, formFields = defaultFormFields) {
     for (const c of formFields) {
         if (!standardFields.hasOwnProperty(c)) throw `Unknown form key (${c})`;
 
-        fieldAttributes = standardFields[c];
+        let fieldAttributes = standardFields[c];
 
         console.log("fieldAttributes", fieldAttributes);
 

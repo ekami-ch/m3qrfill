@@ -14,8 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="formgenerator.css">
-    <script src="formgenerator.js"></script>
-    <script src="qrautofill.js"></script>
+
     <!-- Using EasyQRCodeJS QR Generator https://github.com/ushelp/EasyQRCodeJS -->
     <script type="text/javascript" src="https://rawcdn.githack.com/ushelp/EasyQRCodeJS/361e16645ae1bda2d1cb2dd017e8e16b21f3d232/dist/easy.qrcode.min.js"></script>
 
@@ -26,17 +25,23 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <form id="form" oninput="updateQR();"></form>
+    <form id="form"></form>
     <div id="qrcode"></div>
     <div id="qroutputvalue"></div>
 
-    <script defer>
+    <script type="module">
+        import {generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL} from './qrautofill.js';
+        import {generateForm} from './formgenerator.js';
+
         document.addEventListener('DOMContentLoaded', function() {
             // get parameters from URL
             let urlParams = new URLSearchParams(document.location.search.substring(1));
             generateForm('form');
-            initForm();
+
+            setQrOptionsFromURL();
             initQRCode('qrcode', 'qroutputvalue');
+            document.getElementById('form').addEventListener('keydown', updateQRCode); 
+
         });
     </script>
 </body>

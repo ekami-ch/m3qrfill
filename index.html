@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="qrautofill.css">
 
-    <script type="text/javascript" src="qrautofill.js"></script>
+    <script type="module" src="./qrautofill.js"></script>
 
     <!-- Using EasyQRCodeJS QR Generator https://github.com/ushelp/EasyQRCodeJS -->
     <script type="text/javascript" src="https://rawcdn.githack.com/ushelp/EasyQRCodeJS/361e16645ae1bda2d1cb2dd017e8e16b21f3d232/dist/easy.qrcode.min.js"></script>
@@ -26,7 +26,7 @@
         <![endif]-->
     <input name="genstring" type="text" />
 
-    <form accept-charset="UTF-8" autocomplete="on" oninput="updateQR()" name="qrForm">
+    <form accept-charset="UTF-8" autocomplete="on" name="qrForm">
         <label for="genstring">Générateur</label>
 
         <fieldset>
@@ -68,11 +68,21 @@
         <div id="output"></div>
     </form>
 
-    <script async defer>
-        initForm();
-        initQRCode('qrcode');
-        updateQR();
+    <script type="module">
+        import { initQRCode, updateQRCode, setQrOptionsFromURL } from './qrautofill.js';
+        document.getElementsByName('qrForm')[0].addEventListener('keydown', updateQRCode); 
+        setQrOptionsFromURL(); 
+        initQRCode('qrcode'); 
+        updateQRCode();
+
     </script>
+
+    <!-- <script defer type="text/javascript">
+        // initForm();
+        initQRCode('qrcode');
+        updateQRCode();
+    </script> -->
+
 </body>
 
 </html>
