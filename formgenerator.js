@@ -3,19 +3,18 @@ import { defaultFormFields, standardFields } from './commons.js';
 export { generateForm };
 
 
-function generateForm(formID, formFields = defaultFormFields) {
-    // Get / Set QR Generator parameters
-
+function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields) {
     let form = document.getElementById(formID);
 
-    console.log(formFields);
+    console.log(strFormFields);
 
+    // Used to set autofocus on first field
     let firstField = true;
 
-    for (const c of formFields) {
-        if (!standardFields.hasOwnProperty(c)) throw `Unknown form key (${c})`;
+    for (const c of strFormFields) {
+        if (!formFields.hasOwnProperty(c)) throw `Unknown form key (${c})`;
 
-        let fieldAttributes = standardFields[c];
+        let fieldAttributes = formFields[c];
 
         console.log("fieldAttributes", fieldAttributes);
 
