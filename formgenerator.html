@@ -12,11 +12,16 @@
     <title>Formulaire</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- CSS -->
+    <link href="../popup/css/bootstrap-icon.css" rel="stylesheet">
+    <!-- Bootstrap Font Icon CSS -->
+    <link rel="stylesheet" href="../popup/css/bootstrap.min.css">
+    <link rel="stylesheet" href="qrautofill.css">
     <link rel="stylesheet" href="formgenerator.css">
-
+    <script type="text/javascript" src="easy.qrcode.min.js"></script>
+    <script type="module" src="qrfill.formgenerate.js"></script>
     <!-- Using EasyQRCodeJS QR Generator https://github.com/ushelp/EasyQRCodeJS -->
-    <script type="text/javascript" src="https://rawcdn.githack.com/ushelp/EasyQRCodeJS/361e16645ae1bda2d1cb2dd017e8e16b21f3d232/dist/easy.qrcode.min.js"></script>
+    <!-- <script type="text/javascript" src="https://rawcdn.githack.com/ushelp/EasyQRCodeJS/361e16645ae1bda2d1cb2dd017e8e16b21f3d232/dist/easy.qrcode.min.js"></script> -->
 
 </head>
 
@@ -24,26 +29,12 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-    <form id="form"></form>
+    <div class="container-fluid">
+        <form id="form"></form>
+    </div>
     <div id="qrcode"></div>
     <div id="qroutputvalue"></div>
 
-    <script type="module">
-        import {generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL} from './qrautofill.js';
-        import {generateForm} from './formgenerator.js';
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // get parameters from URL
-            let urlParams = new URLSearchParams(document.location.search.substring(1));
-            generateForm('form');
-
-            setQrOptionsFromURL();
-            initQRCode('qrcode', 'qroutputvalue');
-            document.getElementById('form').addEventListener('keydown', updateQRCode); 
-
-        });
-    </script>
 </body>
 
 </html>

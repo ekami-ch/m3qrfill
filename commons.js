@@ -17,7 +17,8 @@ export const standardFields = {
         name: "firstname",
         type: "text",
         maxlength: 15,
-        label: "Prénom"
+        label: "Prénom",
+        class: "form-control"
     },
     'S': {
         name: "sex",
