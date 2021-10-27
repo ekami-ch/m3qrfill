@@ -13,9 +13,11 @@ export const standardFields = {
         type: "text",
         maxlength: 15,
         label: "Nom",
-        label_name: "form-label",
-        class: "form-control w-100",
-        placeholder: "Last Name"
+        class: "form-control",
+        placeholder: "Last Name",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'F': {
         name: "firstname",
@@ -24,7 +26,10 @@ export const standardFields = {
         maxlength: 15,
         label: "Prénom",
         class: "form-control",
-        placeholder: "First Name"
+        placeholder: "First Name",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'S': {
         name: "gender",
@@ -36,7 +41,10 @@ export const standardFields = {
             female: 'Femme'
         },
         class: "form-select",
-        placeholder: "Gender"
+        placeholder: "Gender",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'B': {
         name: "birthdate",
@@ -44,7 +52,10 @@ export const standardFields = {
         type: "date",
         label: "Date de naissance",
         class: "form-control",
-        placeholder: "Birth Date"
+        placeholder: "Birth Date",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     '1': {
         name: "address1",
@@ -53,7 +64,10 @@ export const standardFields = {
         maxlength: 15,
         label: "Adresse (ligne 1)",
         class: "form-control",
-        placeholder: "Address 1"
+        placeholder: "Address 1",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     '2': {
         name: "address2",
@@ -62,7 +76,10 @@ export const standardFields = {
         maxlength: 15,
         label: "Adresse (ligne 2)",
         class: "form-control",
-        placeholder: "Address 2 (Optional)"
+        placeholder: "Address 2 (Optional)",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'P': {
         name: "postcode",
@@ -71,7 +88,10 @@ export const standardFields = {
         maxlength: 10,
         label: "Code postal",
         class: "form-control",
-        placeholder: "ZIP Code"
+        placeholder: "ZIP Code",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     '@': {
         name: "email",
@@ -80,7 +100,10 @@ export const standardFields = {
         maxlength: 30,
         label: "Email",
         class: "form-control",
-        placeholder: "Email"
+        placeholder: "Email",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'M': {
         name: "mobile",
@@ -89,7 +112,10 @@ export const standardFields = {
         maxlength: 15,
         label: "Numéro de mobile",
         class: "form-control",
-        placeholder: "Cellphone number"
+        placeholder: "Cellphone number",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
     'C': {
         name: "city",
@@ -98,6 +124,9 @@ export const standardFields = {
         maxlength: 15,
         label: "Ville",
         class: "form-control",
-        placeholder: "City"
+        placeholder: "City",
+        label_classes: ["form-label"],
+        div: true,
+        div_classes: ["mb-3"]
     },
 }

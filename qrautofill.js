@@ -78,15 +78,15 @@ function generateJsonOutput() {
     // Go through each form
     Array.from(document.forms).forEach((form, formIndex) => {
 
-        payload[form.name] = {};
+        payload[form.id] = {};
 
         function appendFormElement(element, elementIndex) {
             if (element.type == 'fieldset')
                 return;
 
-            payload[form.name][element.name] = element.value;
+            payload[form.id][element.name] = element.value;
 
-            console.log(form.name, element.name, element);
+            console.log(form.id, element.name, element);
         }
 
         // Go through each element of the form

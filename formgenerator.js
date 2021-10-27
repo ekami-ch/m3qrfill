@@ -1,7 +1,6 @@
 import { defaultFormFields, standardFields } from './commons.js';
-
+import { generateElement } from './javascript-simplifier.js';
 export { generateForm };
-
 
 function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields) {
     let form = document.getElementById(formID);
@@ -17,24 +16,24 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         let fieldAttributes = formFields[c];
 
         console.log("fieldAttributes", fieldAttributes);
-        var newDiv = document.createElement("div");
-        newDiv.classList.add("mb-3");
-        form.appendChild(newDiv);
+        if (fieldAttributes.div == true) {
+            var newDiv = generateElement("div",null,null,null,form, fieldAttributes.div_classes);
+        }
+        else
+            var newDiv = generateElement("div",null,null,null,form);
+
         // Create the new element, and handle the special case of Select
         if (fieldAttributes["type"] == "select") {
-            var newField = document.createElement("select");
+            var newField = generateElement("select");
 
             // Create "option" children
             Object.entries(fieldAttributes["options"]).forEach(([optionName, optionText]) => {
-                let newOption = document.createElement("option");
-                newOption.value = optionName;
-                newOption.innerHTML = optionText;
-                newField.appendChild(newOption);
+                let newOption = generateElement("option", null, optionText, { "value": optionName},newField);
             });
 
             delete fieldAttributes.options;
         } else 
-            var newField = document.createElement("input");
+            var newField = generateElement("input");
 
         // Create 
         switch (fieldAttributes["type"]) {
@@ -43,18 +42,20 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             case "email":
             case "date":
                 if (fieldAttributes.hasOwnProperty("label")) {
-                    
-                    let newLabel = document.createElement("label");
-                    newLabel.setAttribute("for", fieldAttributes.name);
-                    newLabel.classList.add("form-label")
-                    newLabel.innerText = fieldAttributes.label;               
-                    newDiv.appendChild(newLabel);
-
+                    let newLabel = generateElement(
+                        "label",                        // tag 
+                        null,                           // id
+                        fieldAttributes.label,          // value
+                        { "for": fieldAttributes.name },// attributes {}
+                        newDiv,                         // parent element
+                        fieldAttributes.label_classes   // classes []
+                    )
                     delete fieldAttributes.label;
                 }
                 // Add all attributes to the input tag
                 Object.entries(fieldAttributes).forEach(([attribute, value]) => {
-                    newField.setAttribute(attribute, value);
+                    if(attribute != "label_classes" && attribute != "div" && attribute != "div_classes")
+                        newField.setAttribute(attribute, value);
                 });
                 break;
 
@@ -70,3 +71,4 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         newDiv.appendChild(newField);
     }
 }
+
