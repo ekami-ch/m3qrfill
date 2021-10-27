@@ -17,7 +17,9 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         let fieldAttributes = formFields[c];
 
         console.log("fieldAttributes", fieldAttributes);
-
+        var newDiv = document.createElement("div");
+        newDiv.classList.add("mb-3");
+        form.appendChild(newDiv);
         // Create the new element, and handle the special case of Select
         if (fieldAttributes["type"] == "select") {
             var newField = document.createElement("select");
@@ -31,7 +33,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             });
 
             delete fieldAttributes.options;
-        } else
+        } else 
             var newField = document.createElement("input");
 
         // Create 
@@ -41,10 +43,12 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             case "email":
             case "date":
                 if (fieldAttributes.hasOwnProperty("label")) {
+                    
                     let newLabel = document.createElement("label");
                     newLabel.setAttribute("for", fieldAttributes.name);
-                    newLabel.innerText = fieldAttributes.label;
-                    form.appendChild(newLabel);
+                    newLabel.classList.add("form-label")
+                    newLabel.innerText = fieldAttributes.label;               
+                    newDiv.appendChild(newLabel);
 
                     delete fieldAttributes.label;
                 }
@@ -63,6 +67,6 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             firstField = false;
         }
 
-        form.appendChild(newField);
+        newDiv.appendChild(newField);
     }
 }

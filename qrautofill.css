@@ -1,3 +1,15 @@
+/* General */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Quicksand';
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("../fonts/Quicksand.ttf")
+}
+/* Form and QrCode generator */
 fieldset {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -15,4 +27,25 @@ fieldset label:after {
 
 #qrcode {
     margin: 0 auto;
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }

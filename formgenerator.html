@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../popup/css/bootstrap.min.css">
     <link rel="stylesheet" href="qrautofill.css">
     <link rel="stylesheet" href="formgenerator.css">
+    <script type="text/javascript" src="../popup/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="easy.qrcode.min.js"></script>
     <script type="module" src="qrfill.formgenerate.js"></script>
     <!-- Using EasyQRCodeJS QR Generator https://github.com/ushelp/EasyQRCodeJS -->
@@ -29,11 +30,30 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <div class="container-fluid">
-        <form id="form"></form>
+
+    <nav class="navbar navbar-dark bg-dark sticky-top w-100">
+      <div class="container-fluid justify-content-start"> 
+        <a class="navbar-brand" href="#">
+            <img src="assets/m3-logo-transparent-square.png" alt="" width="40" height="40" class="mx-2">
+              Qr Code Generator
+        </a>
+      </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm">
+                <form id="form" class=""></form>
+            </div>
+            <div class="col-sm">
+                <div id="qrcode"></div>
+            </div>
+        </div>
     </div>
-    <div id="qrcode"></div>
-    <div id="qroutputvalue"></div>
+    
+    <div class="container-fluid mt-5">
+        <div id="qroutputvalue"></div>
+    </div>
+    
 
 </body>
 
