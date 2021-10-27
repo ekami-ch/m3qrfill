@@ -163,8 +163,8 @@ function initQRCode(qrCodeId = "qrcode", qrValueOutputId = null, qrOptions = def
     let easyQRCodeOptions = {
         // ====== Basic
         text: "https://github.com/ushelp/EasyQRCodeJS",
-        width: 512,
-        height: 512,
+        width: 430,
+        height: 430,
         colorDark: "#000000",
         colorLight: "#fffcf0",
         correctLevel: QRCode.CorrectLevel.M, // L, M, Q, H

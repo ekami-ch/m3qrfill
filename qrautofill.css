@@ -7,7 +7,7 @@ body {
 
 @font-face {
     font-family: "Quicksand";
-    src: url("../fonts/Quicksand.ttf")
+    src: url("../fonts/Quicksand.ttf");
 }
 /* Form and QrCode generator */
 fieldset {
