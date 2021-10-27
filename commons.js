@@ -36,8 +36,7 @@ export const standardFields = {
             female: 'Femme'
         },
         class: "form-select",
-        placeholder: "Gender",
-        style: "width: 100%;"
+        placeholder: "Gender"
     },
     'B': {
         name: "birthdate",
