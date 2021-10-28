@@ -171,7 +171,7 @@ function initQRCode(qrCodeId = "qrcode", qrValueOutputId = null, qrOptions = def
         dotScale: 0.6, // For body block, must be greater than 0, less than or equal to 1. default is 1
         quietZone: 10,
         quietZoneColor: "rgba(0,0,0,0)",
-        backgroundImage: 'assets/m3-logo-transparent-square.png', // Background Image
+        backgroundImage: 'assets/img/m3-logo-transparent-square.png', // Background Image
         backgroundImageAlpha: 0.15, // Background image transparency, value between 0 and 1. default is 1. 
         autoColor: true, // Automatic color adjustment(for data block)
         autoColorDark: "rgba(0, 0, 0, .8)", // Automatic color: dark CSS color
