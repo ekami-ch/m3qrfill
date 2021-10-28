@@ -66,7 +66,7 @@ function generateSequenceOuput(genString) {
         generatedString += getValueFromCharacter(c);
     });
 
-    console.log(generatedString)
+    // console.log(generatedString)
 
     return generatedString;
 
@@ -86,7 +86,7 @@ function generateJsonOutput() {
 
             payload[form.id][element.name] = element.value;
 
-            console.log(form.id, element.name, element);
+            // console.log(form.id, element.name, element);
         }
 
         // Go through each element of the form
@@ -102,11 +102,11 @@ function generateJsonOutput() {
 
     outputObject['payload'] = payload;
 
-    console.log(outputObject);
+    // console.log(outputObject);
 
     let jsonOutput = JSON.stringify(outputObject)
 
-    console.log(jsonOutput);
+    // console.log(jsonOutput);
 
     return jsonOutput;
 }
@@ -136,7 +136,7 @@ function generateQRContent(outputFormat, encoding) {
         qrContent = changeEncoding(qrContent, encoding)
 
     // Return
-    console.log(`Generated qrContent`, qrContent)
+    // console.log(`Generated qrContent`, qrContent)
     return qrContent;
 }
 
@@ -297,7 +297,7 @@ function initQRCode(qrCodeId = "qrcode", qrValueOutputId = null, qrOptions = def
 // This function will render / update the QR Code on the HTML Document
 // Contains code specific to the selected QR Code Generator Library.
 function updateQRCode() {
-    console.log(`Updating QR Code`);
+    // console.log(`Updating QR Code`);
 
     // Generate QR Code from document DOM
     let qrcontent = generateQRContent(outputFormat, encoding);

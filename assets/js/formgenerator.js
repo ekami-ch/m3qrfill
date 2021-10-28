@@ -5,7 +5,7 @@ export { generateForm };
 function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields) {
     let form = document.getElementById(formID);
 
-    console.log(strFormFields);
+    // console.log(strFormFields);
 
     // Used to set autofocus on first field
     let firstField = true;
@@ -15,7 +15,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
 
         let fieldAttributes = formFields[c];
 
-        console.log("fieldAttributes", fieldAttributes);
+        // console.log("fieldAttributes", fieldAttributes);
         if (fieldAttributes.div == true) {
             var newDiv = generateElement("div",null,null,null,form, fieldAttributes.div_classes);
         }
