@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     generateForm('form');
     setQrOptionsFromURL();
     initQRCode('qrcode', 'qroutputvalue');
-    document.getElementById('form').addEventListener('keydown', updateQRCode); 
+    document.getElementById('form').addEventListener('change', updateQRCode);
+    document.getElementById('form').addEventListener('keyup', updateQRCode);
 
 });

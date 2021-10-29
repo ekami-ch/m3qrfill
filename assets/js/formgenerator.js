@@ -1,12 +1,13 @@
-import { defaultFormFields, standardFields } from './commons.js';
+import { defaultFormFields, standardFields, standardLists } from './commons.js';
 import { generateElement } from '../../web-basics-helper-kit/js/web-basics/javascript-simplifier.js';
 export { generateForm };
 
-function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields) {
+function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields, dataLists = standardLists) {
     let form = document.getElementById(formID);
 
-    // console.log(strFormFields);
 
+    ////////////////////// FORM FIELDS ///////////////////////
+    // console.log(strFormFields);
     // Used to set autofocus on first field
     let firstField = true;
 
@@ -15,6 +16,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
 
         let fieldAttributes = formFields[c];
 
+        ///////////////// Create div
         // console.log("fieldAttributes", fieldAttributes);
         if (fieldAttributes.div == true) {
             var newDiv = generateElement("div",null,null,null,form, fieldAttributes.div_classes);
@@ -22,33 +24,51 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         else
             var newDiv = generateElement("div",null,null,null,form);
 
-        // Create the new element, and handle the special case of Select
+
+        ///////////////// Create new element
+        // handle the special case of Select
         if (fieldAttributes["type"] == "select") {
             var newField = generateElement("select");
 
             // Create "option" children
-            Object.entries(fieldAttributes["options"]).forEach(([optionName, optionText]) => {
-                let newOption = generateElement("option", null, optionText, { "value": optionName},newField);
+
+            // the Options attribute can contain a string referencing a dataList, or a list directly.
+            if (typeof(fieldAttributes["options"]) == "string")
+                var options = dataLists[fieldAttributes["options"]]
+            else
+                var options = fieldAttributes["options"]
+
+            Object.entries(options).forEach(([optionName, optionText]) => {
+                generateElement("option", null, optionText, { "value": optionName, "data-tokens": optionText},newField);
             });
 
             delete fieldAttributes.options;
         } else 
             var newField = generateElement("input");
 
-        // Create 
+
+        if (firstField) {
+            newField.autofocus = true;
+            firstField = false;
+        }
+
+        var newLabel = null;
+
+        ///////////////// Set attributes
         switch (fieldAttributes["type"]) {
             case "select":
             case "text":
             case "email":
             case "number":
+            case "":
             case "date":
                 if (fieldAttributes.hasOwnProperty("label")) {
-                    let newLabel = generateElement(
+                    newLabel = generateElement(
                         "label",                        // tag 
                         null,                           // id
                         fieldAttributes.label,          // value
                         { "for": fieldAttributes.name },// attributes {}
-                        newDiv,                         // parent element
+                        null,                           // parent element
                         fieldAttributes.label_classes   // classes []
                     )
                     delete fieldAttributes.label;
@@ -61,15 +81,25 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
                 break;
 
             default:
-                throw `Unable to handle field type ${fieldAttributes["type"]}`;
-        }
-
-        if (firstField) {
-            newField.autofocus = true;
-            firstField = false;
+                throw `Label: Unable to handle field type ${fieldAttributes["type"]}`;
         }
 
         newDiv.appendChild(newField);
+        if (newLabel) newDiv.appendChild(newLabel);
+    }
+
+    ////////////////////// DATA LISTS ///////////////////////
+
+    if (dataLists) {
+        Object.entries(dataLists).forEach(([listName, listContent]) => {
+            var listElement = generateElement("datalist", listName);
+
+            Object.entries(listContent).forEach(([elementName, elementValue]) => {
+                generateElement("option", null, elementValue, { value: elementName }, listElement );
+            });
+
+            document.body.appendChild(listElement)
+        });
     }
 }
 

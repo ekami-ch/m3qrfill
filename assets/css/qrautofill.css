@@ -4,6 +4,18 @@ body {
     overflow-y: auto;
     font-family: 'FoundrySterling';
 }
+
+form {
+  /* display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 5px; */
+  margin-bottom: 1em;
+}
+
+#qrcode {
+  margin: 0 auto;
+}
+
 a, label {
   font-family: "Avenir";
 }
