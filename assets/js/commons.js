@@ -108,7 +108,7 @@ export const standardFields = {
     'M': {
         name: "mobile",
         id: "mobile",
-        type: "text",
+        type: "number",
         maxlength: 15,
         label: "Numéro de mobile",
         class: "form-control",

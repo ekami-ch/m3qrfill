@@ -40,6 +40,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             case "select":
             case "text":
             case "email":
+            case "number":
             case "date":
                 if (fieldAttributes.hasOwnProperty("label")) {
                     let newLabel = generateElement(
