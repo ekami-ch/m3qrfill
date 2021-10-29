@@ -10,15 +10,15 @@ a, label {
 
 @font-face {
     font-family: "Quicksand";
-    src: url("../../../web-basics-helper-kit/font/Quicksand.ttf");
+    src: url("../../web-basics-helper-kit/font/Quicksand.ttf");
 }
 @font-face {
   font-family: "Avenir";
-  src: url("../../../web-basics-helper-kit/font/Avenir/AvenirLTStd-Black.otf");
+  src: url("../../web-basics-helper-kit/font/Avenir/AvenirLTStd-Black.otf");
 }
 @font-face {
   font-family: "FoundrySterling";
-  src: url("../../../web-basics-helper-kit/font/FoundrySterling/FoundrySterling-Book.otf");
+  src: url("../../web-basics-helper-kit/font/FoundrySterling/FoundrySterling-Book.otf");
 }
 /* Form and QrCode generator */
 fieldset {
