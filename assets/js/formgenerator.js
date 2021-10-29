@@ -1,5 +1,5 @@
 import { defaultFormFields, standardFields } from './commons.js';
-import { generateElement } from '../../../web-basics-helper-kit/js/web-basics/javascript-simplifier.js';
+import { generateElement } from '../../web-basics-helper-kit/js/web-basics/javascript-simplifier.js';
 export { generateForm };
 
 function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields) {
