@@ -149,6 +149,9 @@ function changeEncoding(qrContent, encoding) {
         case "Base64":
             encodedString = btoa(qrContent);
             break;
+        case "lz7":
+            encodedString = LZString.compress(qrContent);
+            break;
         default:
             throw `Unknown Encoding (${encoding})`;
     }
