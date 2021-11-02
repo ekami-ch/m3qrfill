@@ -72,3 +72,30 @@ fieldset label:after {
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
+
+@media print {
+  svg {
+    visibility: hidden;
+  }
+  #qrcode
+  {
+    margin-top: 0;
+  }
+  #qrcode canvas
+  {
+    width: 100%; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+  }
+  .navbar {
+    visibility: hidden;
+    height: 0;
+  }
+  #qroutputvalue
+  {
+    visibility: hidden;
+  }
+
+}
