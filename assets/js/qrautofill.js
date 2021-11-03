@@ -19,7 +19,7 @@ function setQrOptionsFromURL() {
 
     // Encoding. Default is Base64
     encoding = urlParams.has('encoding') ?
-        urlParams.get('encoding') : defaultQrOptions.encoding; // Base64, Raw
+        urlParams.get('encoding') : defaultQrOptions.encoding; // Base64, Raw, utf-16
 
     // Set genstring variable. Default matches m3-test mobile unit form. Only for String Output
     genString = urlParams.has('genstring') ?
@@ -149,8 +149,8 @@ function changeEncoding(qrContent, encoding) {
         case "Base64":
             encodedString = btoa(qrContent);
             break;
-        case "lz7":
-            encodedString = LZString.compress(qrContent);
+        case "utf-16":
+            encodedString = LZString.compressToUTF16(qrContent);
             break;
         default:
             throw `Unknown Encoding (${encoding})`;
@@ -304,7 +304,6 @@ function updateQRCode() {
 
     // Generate QR Code from document DOM
     let qrcontent = generateQRContent(outputFormat, encoding);
-
     qrCode.makeCode(qrcontent);
 
     if (qrValueOutput) qrValueOutput.innerText = qrcontent;
