@@ -51,7 +51,22 @@ fieldset label:after {
 #qrcode {
     margin: 0 auto;
 }
+#qrcode canvas {
+  width: 100vw;
+  height: auto;
+}
+#qrcode-div {
+  display: none;
+}
+#qroutputvalue
+{
+    visibility: hidden;
+    margin: -9999999px;
+}
 
+#qrcode-div-print {
+  display: none;
+}
 /* Scroll Bar */
 
 ::-webkit-scrollbar {
@@ -125,11 +140,12 @@ fieldset label:after {
     height: 0;
     max-height: 0;
   }
-  #qroutputvalue
-  {
-    visibility: hidden;
-    margin: -9999999px;
+  #qrcode-div-print {
+    display: block;
   }
-
+  #print-button {
+    display: none;
+    height: 0;
+  }
 }
 
