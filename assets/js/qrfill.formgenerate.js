@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else
         {
-            alert("You must fill all required informations correctly! (Except adresse ligne 2)");
+            alert("You must fill all required informations correctly! (Except adresse ligne 2) \nVous Devez remplir toutes les informations correctement (Sauf adresse ligne 2)");
         }
     }
     window.onafterprint = function() {window.location.reload()}
