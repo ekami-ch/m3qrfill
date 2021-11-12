@@ -13,14 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.querySelector('form')
         
     document.getElementById('print-button').onclick = function() { 
-        if(form.checkValidity())
-        {
-            updateQRCode; window.print();
-        }
-        else
-        {
-            alert("You must fill all required informations correctly! (Except adresse ligne 2) \nVous Devez remplir toutes les informations correctement (Sauf adresse ligne 2)");
-        }
+        updateQRCode; window.print();
+        // if(form.checkValidity())
+        // {
+            
+        // }
+        // else
+        // {
+        //     alert("You must fill all required informations correctly! (Except adresse ligne 2) \nVous Devez remplir toutes les informations correctement (Sauf adresse ligne 2)");
+        // }
     }
     window.onafterprint = function() {window.location.reload()}
 });
