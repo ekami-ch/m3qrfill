@@ -24,7 +24,6 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         else
             var newDiv = generateElement("div",null,null,null,form);
 
-
         ///////////////// Create new element
         // handle the special case of Select
         if (fieldAttributes["type"] == "select") {
@@ -60,6 +59,9 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             case "text":
             case "email":
             case "number":
+            case "tel":
+            case "submit":
+            case "button":
             case "":
             case "date":
                 if (fieldAttributes.hasOwnProperty("label")) {
@@ -102,4 +104,6 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
         });
     }
 }
+
+
 

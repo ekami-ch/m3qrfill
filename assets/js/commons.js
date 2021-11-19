@@ -1,7 +1,8 @@
 const defaultQrOptions = {
     outputFormat: "JSON",
     encoding: "Base64",
-    genString: "@TLTFTBRTTTMTT1T2TPTCTTWWW"
+    genString: "@TLTFTBRTTTMTT1T2TPTCTTWWW",
+    platform: "mobile"
 }
 
 const defaultFormFields = 'SLFB@iM12PCc';
@@ -10,6 +11,8 @@ const standardFields = {
     'L': {
         name: "lastname",
         id: "lastname",
+        required:true,
+        autocomplete:"off",
         type: "text",
         maxlength: 15,
         label: "Nom (lastname)",
@@ -21,6 +24,8 @@ const standardFields = {
     },
     'F': {
         name: "firstname",
+        required:true,
+        autocomplete:"off",
         id: "firstname",
         type: "text",
         maxlength: 15,
@@ -33,6 +38,8 @@ const standardFields = {
     },
     'S': {
         name: "sex",
+        required:true,
+        autocomplete:"off",
         id: "sex",
         type: "select",
         label: "Sexe (sex)",
@@ -48,6 +55,8 @@ const standardFields = {
     },
     'B': {
         name: "birthdate",
+        required:true,
+        autocomplete:"off",
         id: "birthdate",
         type: "date",
         label: "Date de naissance (Birthdate)",
@@ -59,6 +68,8 @@ const standardFields = {
     },
     '1': {
         name: "address1",
+        required:true,
+        autocomplete:"off",
         id: "address1",
         type: "text",
         maxlength: 30,
@@ -83,6 +94,8 @@ const standardFields = {
     },
     'P': {
         name: "postcode",
+        required:true,
+        autocomplete:"off",
         id: "postcode",
         type: "text",
         maxlength: 10,
@@ -95,6 +108,8 @@ const standardFields = {
     },
     '@': {
         name: "email",
+        required:true,
+        autocomplete:"off",
         id: "email",
         type: "email",
         maxlength: 30,
@@ -120,8 +135,10 @@ const standardFields = {
     },
     'M': {
         name: "mobile",
+        required:true,
+        autocomplete:"off",
         id: "mobile",
-        type: "number",
+        type: "tel",
         maxlength: 15,
         label: "Téléphone Mobile (mobile number)",
         class: "form-control",
@@ -132,6 +149,8 @@ const standardFields = {
     },
     'C': {
         name: "city",
+        required:true,
+        autocomplete:"off",
         id: "city",
         type: "text",
         maxlength: 15,
@@ -144,6 +163,8 @@ const standardFields = {
     },
     'c': {
         name: "country",
+        required:true,
+        autocomplete:"off",
         id: "country",
         type: "select",
         label: "Pays (country)",
@@ -154,6 +175,12 @@ const standardFields = {
         div: true,
         div_classes: ["mb-3", "form-floating"]
     },
+    'b' : {
+        type: "button",
+        id: "print-button",
+        value: "Print/Imprimer",
+        class: "btn btn-primary"
+    }
 }
 
 const standardLists = {

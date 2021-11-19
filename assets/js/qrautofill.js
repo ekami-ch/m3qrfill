@@ -1,10 +1,10 @@
 import { defaultQrOptions, standardFields } from './commons.js';
 
-export { generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL };
+export { generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL, changeDisplayFromPlatform };
 
 
 // Global variables
-var outputFormat, encoding, genString;
+var outputFormat, encoding, genString, platform;
 var qrCode, qrValueOutput;
 
 
@@ -13,9 +13,15 @@ function setQrOptionsFromURL() {
     // Get / Set QR Generator parameters
     // get parameters from URL
     let urlParams = new URLSearchParams(document.location.search.substring(1));
+
+
     // Set Output format. Default is JSON. 
     outputFormat = urlParams.has('outputformat') ?
         urlParams.get('outputformat') : defaultQrOptions.outputFormat; // JSON, String
+
+    // Platform (Mobile/PC)
+    platform = urlParams.has('platform') ? 
+        urlParams.get('platform') : defaultQrOptions.platform; // PC
 
     // Encoding. Default is Base64
     encoding = urlParams.has('encoding') ?
@@ -30,7 +36,17 @@ function setQrOptionsFromURL() {
     return { outputFormat: outputFormat, encoding: encoding, genString: genString };
 
 }
-
+function changeDisplayFromPlatform() {
+    let qrcodediv = document.querySelector("#qrcode-div");
+    let printButton = document.querySelector("#print-button");
+    if(platform == "mobile") {
+        qrcodediv.style.display = "block";
+        printButton.style.display = "none";
+    }
+    else {
+        qrcodediv.id = "qrcode-div-print";
+    }
+}
 // Return the text to be encoded in the QR Code based on the genString sequence provided in argument
 function generateSequenceOuput(genString) {
     // Return the value corresponding to a specific Character in the genString
@@ -170,15 +186,15 @@ function initQRCode(qrCodeId = "qrcode", qrValueOutputId = null, qrOptions = def
         height: 430,
         colorDark: "#000000",
         colorLight: "#fffcf0",
-        correctLevel: QRCode.CorrectLevel.M, // L, M, Q, H
-        dotScale: 0.6, // For body block, must be greater than 0, less than or equal to 1. default is 1
-        quietZone: 10,
+        correctLevel: QRCode.CorrectLevel.L, // L, M, Q, H
+        dotScale: 0.8, // For body block, must be greater than 0, less than or equal to 1. default is 1
+        quietZone: 1,
         quietZoneColor: "rgba(0,0,0,0)",
-        backgroundImage: 'assets/img/m3-logo-transparent-square.png', // Background Image
-        backgroundImageAlpha: 0.15, // Background image transparency, value between 0 and 1. default is 1. 
+        logo: 'assets/img/m3-logo-transparent-square.png', // Background Image
+        logoBackgroundTransparent: true,
         autoColor: true, // Automatic color adjustment(for data block)
-        autoColorDark: "rgba(0, 0, 0, .8)", // Automatic color: dark CSS color
-        autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
+        autoColorDark: "rgba(0, 0, 0, 1)", // Automatic color: dark CSS color
+        autoColorLight: "rgba(255, 255, 255, 1)", // Automatic color: light CSS color
         // title: '', // content 
         // titleFont: "normal normal bold 20px Arial", //font. default is "bold 16px Arial"
         // titleColor: "#004284", // color. default is "#000"
