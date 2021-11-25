@@ -1,4 +1,4 @@
-import { defaultFormFields, standardFields, standardLists } from './commons.js';
+//import { defaultFormFields, standardFields, standardLists } from './commons.js';
 import { generateElement } from '../../web-basics-helper-kit/js/web-basics/javascript-simplifier.js';
 export { generateForm };
 

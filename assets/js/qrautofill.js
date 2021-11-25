@@ -1,4 +1,4 @@
-import { defaultQrOptions, standardFields } from './commons.js';
+//import { defaultQrOptions, standardFields } from './commons.js';
 
 export { generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL, changeDisplayFromPlatform };
 
