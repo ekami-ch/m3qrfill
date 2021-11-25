@@ -671,7 +671,7 @@ const standardLists = {
 
 const standardConvertionTable = 
 {
-    "https?:\/\/.*\.m3-test\.ch.*": {
+    "https?:\/\/.*m3-test\.ch.*": {
         dataLocations: { // Associate inputs with elemenents in formData.payload
             "input[autocomplete='firstname']": ["form", "firstname"],
             "input[autocomplete='lastname']": ["form", "lastname"],
