@@ -166,7 +166,7 @@ function changeEncoding(qrContent, encoding) {
             encodedString = btoa(qrContent);
             break;
         case "lz7":
-            encodedString = LZString.compressToBase64(qrContent);
+            encodedString = LZString.compressToBase64(qrContent).replace(/\+/g, "-").replace(/\//g, "_");;
             break;
         default:
             throw `Unknown Encoding (${encoding})`;
