@@ -1,5 +1,6 @@
 import {generateQRContent, initQRCode, updateQRCode, setQrOptionsFromURL, changeDisplayFromPlatform} from './qrautofill.js';
 import {generateForm} from './formgenerator.js';
+import {touchstartEvent, touchendEvent, incrementPrintNumber, download_csv_file} from './konamiStatPrint.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // get parameters from URL
@@ -8,20 +9,34 @@ document.addEventListener('DOMContentLoaded', function() {
     setQrOptionsFromURL();
     initQRCode('qrcode', 'qroutputvalue');
     changeDisplayFromPlatform();
-    document.getElementById('form').addEventListener('change', updateQRCode);
-    document.getElementById('form').addEventListener('keyup', updateQRCode);    
-    var form = document.querySelector('form')
-        
-    document.getElementById('print-button').onclick = function() { 
-        updateQRCode; window.print();
-        // if(form.checkValidity())
-        // {
-            
-        // }
-        // else
-        // {
-        //     alert("You must fill all required informations correctly! (Except adresse ligne 2) \nVous Devez remplir toutes les informations correctement (Sauf adresse ligne 2)");
-        // }
+
+    var body = document.querySelector('body');
+    var form = document.querySelector('form');
+    var printBtn = document.getElementById('print-button');
+    var dlCsvBtn = document.getElementById('dl-csv-button');
+    var closeConfigBtn = document.getElementById('close-config-button');
+    var configPopup = document.getElementById('configPopup');
+
+    form.addEventListener('change', updateQRCode);
+    form.addEventListener('keyup', updateQRCode);    
+
+    printBtn.onclick = function() { 
+        updateQRCode;
+        window.print();
+        incrementPrintNumber();
     }
-    window.onafterprint = function() {window.location.reload()}
+
+    closeConfigBtn.onclick = function() {
+        configPopup.style.display = "none";
+    }
+
+    window.onafterprint = function() {
+        window.location.reload()
+    }
+
+    dlCsvBtn.onclick = download_csv_file;
+
+    body.addEventListener('touchstart', touchstartEvent, false);
+    body.addEventListener('touchend', touchendEvent, false);
+    
 });
