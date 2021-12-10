@@ -85,7 +85,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             default:
                 throw `Label: Unable to handle field type ${fieldAttributes["type"]}`;
         }
-
+        dateSelector( '.form-date');
         newDiv.appendChild(newField);
         if (newLabel) newDiv.appendChild(newLabel);
     }

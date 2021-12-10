@@ -55,13 +55,14 @@ const standardFields = {
     },
     'B': {
         name: "birthdate",
+        pattern: "\d{4}-\d{1,2}-\d{1,2}",
         required:true,
         autocomplete:"off",
         id: "birthdate",
-        type: "date",
-        label: "Date de naissance (Birthdate)",
-        class: "form-control",
-        placeholder: " ",
+        type: "text",
+        label: "Date de naissance (Birthdate Year-Month-Day)",
+        class: "form-control form-date",
+        placeholder: "Year-Month-Day",
         label_classes: ["form-label"],
         div: true,
         div_classes: ["mb-3", "form-floating"]
