@@ -21,16 +21,13 @@ export function touchendEvent(e) {
     // list is the touch point that was just removed from the surface.
     deltaX = e.changedTouches[0].clientX - clientX;
     deltaY = e.changedTouches[0].clientY - clientY;
+    let key;
     
-    var distance = (deltaX**2, deltaY**2)**0.5
-    var key;
-    
-    if (distance > 100) {
         if (Math.abs(deltaX) > Math.abs(deltaY))
-        key = (deltaX > 0) ? "ArrowRight" : "ArrowLeft";
+            key = (deltaX > 0) ? "ArrowRight" : "ArrowLeft";
         else
-        key = (deltaY > 0) ? "ArrowDown" : "ArrowUp";
-    }
+            key = (deltaY > 0) ? "ArrowDown" : "ArrowUp";
+    //}
     
     detectKonamiCode(key)    
 }
