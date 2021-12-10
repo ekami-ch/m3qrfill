@@ -22,8 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     printBtn.onclick = function() { 
         updateQRCode;
-        window.print();
-        incrementPrintNumber();
+        setTimeout(
+            function(){ 
+                window.print();
+                incrementPrintNumber(); 
+            }, 1000);
+        
     }
 
     window.onafterprint = function() {
