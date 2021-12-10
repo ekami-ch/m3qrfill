@@ -23,6 +23,7 @@ export function touchendEvent(e) {
     deltaY = e.changedTouches[0].clientY - clientY;
     
     var distance = (deltaX**2, deltaY**2)**0.5
+    var key;
     
     if (distance > 100) {
         if (Math.abs(deltaX) > Math.abs(deltaY))
