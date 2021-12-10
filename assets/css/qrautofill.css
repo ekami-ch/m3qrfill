@@ -12,6 +12,10 @@ form {
   margin-bottom: 1em;
 }
 
+.form-control:disabled, .form-control[readonly] {
+  background-color: #fff;
+}
+
 #qrcode {
   margin: 0 auto;
 }

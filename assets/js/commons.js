@@ -63,6 +63,7 @@ const standardFields = {
         label: "Date de naissance (Birthdate Year-Month-Day)",
         class: "form-control form-date",
         placeholder: "Year-Month-Day",
+        readonly: "readonly",
         label_classes: ["form-label"],
         div: true,
         div_classes: ["mb-3", "form-floating"]
