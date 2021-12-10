@@ -26,10 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         incrementPrintNumber();
     }
 
-    closeConfigBtn.onclick = function() {
-        configPopup.style.display = "none";
-    }
-
     window.onafterprint = function() {
         window.location.reload()
     }
