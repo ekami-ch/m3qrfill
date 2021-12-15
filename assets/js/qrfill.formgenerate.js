@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setQrOptionsFromURL();
     initQRCode('qrcode', 'qroutputvalue');
     changeDisplayFromPlatform();
-
+    
     var body = document.querySelector('body');
     var form = document.querySelector('form');
     var printBtn = document.getElementById('print-button');
@@ -29,14 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         
     }
-
+    //reload the page after clicking print button
     window.onafterprint = function() {
         window.location.reload()
     }
 
-    dlCsvBtn.onclick = download_csv_file;
+    dlCsvBtn.onclick = download_csv_file; // download the CSV file
 
-    body.addEventListener('touchstart', touchstartEvent, false);
-    body.addEventListener('touchend', touchendEvent, false);
+    body.addEventListener('touchstart', touchstartEvent, false); //those 2 functions are used to detect
+    body.addEventListener('touchend', touchendEvent, false);//the swipes and moves on screen to use the konami code
     
-});
+});//EOF
