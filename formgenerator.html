@@ -12,22 +12,28 @@
     <title>Formulaire</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSS -->
-    <link media="screen" href="web-basics-helper-kit/css/bootstrap5/bootstrap-icon.css" rel="stylesheet">
-    <link href="./web-basics-helper-kit/date-selector-master/src/gm-date-selector.css" rel="stylesheet" />
-    
-    <!-- Bootstrap Font Icon CSS -->
-    <link media="screen" rel="stylesheet" href="web-basics-helper-kit/css/bootstrap5/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/qrautofill.css">
-    <script src="assets/js/commons.js"></script>
-    <script src="./web-basics-helper-kit/date-selector-master/src/gm-date-selector.js"></script>
-    <script type="text/javascript" src="web-basics-helper-kit/js/lz-string/lz-string.js"></script>
-    <script type="text/javascript" src="web-basics-helper-kit/js/bootstrap5/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="web-basics-helper-kit/js/easy-qr-code/easy.qrcode.min.js"></script>
-    <script type="module" src="web-basics-helper-kit/js/web-basics/javascript-simplifier.js"></script>
+
+    <!-- CSS Dependencies -->
+    <link media="screen" rel="stylesheet" href="web-basics-helper-kit/bootstrap-icons-1.7.2/bootstrap-icons.css">
+    <link media="screen" rel="stylesheet"
+        href="web-basics-helper-kit/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker3.css">
+    <link media="screen" rel="stylesheet" href="web-basics-helper-kit/bootstrap-5.0.2/css/bootstrap.min.css">
+
+    <!-- JS Dependencies -->
+    <script type="text/javascript" src="web-basics-helper-kit/jquery-3.6.0/jquery-3.6.0.slim.min.js"></script>
+    <script type="text/javascript"
+        src="web-basics-helper-kit/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="web-basics-helper-kit/lz-string-1.4.4/lz-string.js"></script>
+    <script type="text/javascript" src="web-basics-helper-kit/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="web-basics-helper-kit/easy-qr-code-4.4.6/easy.qrcode.min.js"></script>
+
+    <!-- JS -->
+    <script type="text/javascript" src="assets/js/commons.js"></script>
+    <script type="module" src="web-basics-helper-kit/web-basics/javascript-simplifier.js"></script>
     <script type="module" src="assets/js/qrfill.formgenerate.js"></script>
-    <!-- Using EasyQRCodeJS QR Generator https://github.com/ushelp/EasyQRCodeJS -->
-    <!-- <script type="text/javascript" src="https://rawcdn.githack.com/ushelp/EasyQRCodeJS/361e16645ae1bda2d1cb2dd017e8e16b21f3d232/dist/easy.qrcode.min.js"></script> -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/qrautofill.css">
 
 </head>
 
@@ -37,13 +43,14 @@
     <![endif]-->
 
     <nav class="navbar navbar-dark bg-dark sticky-top w-100">
-      <div class="container-fluid justify-content-start"> 
-        <a class="navbar-brand" href="#">
-            <img src="assets/img/m3-logo-transparent-square.png" alt="m3" width="40" height="40" class="mx-2">
-            Self-Registration
-        </a>
-      </div>
+        <div class="container-fluid justify-content-start">
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/m3-logo-transparent-square.png" alt="m3" width="40" height="40" class="mx-2">
+                Self-Registration
+            </a>
+        </div>
     </nav>
+
     <div class="container mt-4">
         <div class="row">
             <div class="col-sm" id="form-div">
@@ -54,37 +61,31 @@
             </div>
         </div>
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nombre d'impression</h5>
-        </div>
-        <div class="modal-body">
-            <div id="configPopup">
-               
+        <!-- Modal -->
+        <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nombre d'impression</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div id="configPopup"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="close-config-button"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="dl-csv-button">Download CSV</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="close-config-button" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="dl-csv-button">Download CSV</button>
-        </div>
-      </div>
+
     </div>
-  </div>
-        <!-- <div id="configPopup" class="row csvInfosDisplay">
-            <button id="close-config-button">Close</button>
-            <button id="dl-csv-button">Download CSV</button>
-        </div> -->
-    
-    </div>
-    
+
     <div class="container-fluid mt-5">
         <div id="qroutputvalue"></div>
     </div>
-    
+
 </body>
 
 </html>

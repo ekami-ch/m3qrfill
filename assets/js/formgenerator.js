@@ -1,5 +1,5 @@
 //import { defaultFormFields, standardFields, standardLists } from './commons.js';
-import { generateElement } from '../../web-basics-helper-kit/js/web-basics/javascript-simplifier.js';
+import { generateElement } from '../../web-basics-helper-kit/web-basics/javascript-simplifier.js';
 export { generateForm };
 
 function generateForm(formID, strFormFields = defaultFormFields, formFields = standardFields, dataLists = standardLists) {
@@ -85,7 +85,7 @@ function generateForm(formID, strFormFields = defaultFormFields, formFields = st
             default:
                 throw `Label: Unable to handle field type ${fieldAttributes["type"]}`;
         }
-        dateSelector( '.form-date');
+        
         newDiv.appendChild(newField);
         if (newLabel) newDiv.appendChild(newLabel);
     }

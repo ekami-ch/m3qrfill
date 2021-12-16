@@ -9,13 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
     setQrOptionsFromURL();
     initQRCode('qrcode', 'qroutputvalue');
     changeDisplayFromPlatform();
-    
     var body = document.querySelector('body');
     var form = document.querySelector('form');
     var printBtn = document.getElementById('print-button');
     var dlCsvBtn = document.getElementById('dl-csv-button');
-    var closeConfigBtn = document.getElementById('close-config-button');
-    var configPopup = document.getElementById('configPopup');
+
+    $('.datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        startView: 2,
+        maxViewMode: 2,
+        language: "fr",
+        keyboardNavigation: false,
+        autoclose: true,
+        defaultViewDate: { year: 1980, month: 1, day: 1 }
+    });
 
     form.addEventListener('change', updateQRCode);
     form.addEventListener('keyup', updateQRCode);    

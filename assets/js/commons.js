@@ -61,7 +61,7 @@ const standardFields = {
         id: "birthdate",
         type: "text",
         label: "Date de naissance (Birthdate Year-Month-Day)",
-        class: "form-control form-date",
+        class: "form-control datepicker",
         placeholder: "Year-Month-Day",
         readonly: "readonly",
         label_classes: ["form-label"],
